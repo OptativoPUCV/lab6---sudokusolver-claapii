@@ -52,7 +52,7 @@ int is_valid(Node* n)
          {
             for (k = 0; k < 9; k++) //Revisa si el numero esta en la fila
             {
-               if (n->sudo[i][j] == n->sudo[i][k]) 
+               if (k != j && n->sudo[i][j] == n->sudo[i][k]) 
                {
                   return 0;
                }    
