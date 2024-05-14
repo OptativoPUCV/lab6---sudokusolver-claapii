@@ -75,9 +75,7 @@ int is_valid(Node* n)
                         return 0;
                   }
                }
-               
             }
-            
          }
    return 1;
 }
@@ -120,8 +118,31 @@ int is_final(Node* n)
    return 1;
 }
 
-Node* DFS(Node* initial, int* cont){
-  return NULL;
+Node* DFS(Node* initial, int* cont)
+{
+   /*
+   Stack* pila = createStack();
+   push(pila,initial);
+   while(get_size(pila) != 0)
+   {
+      Node* n = top(pila);
+      pop(pila);
+      if(is_final(n))
+         return n;
+      List* adj = get_adj_nodes(n);
+      Node* aux = first(adj);
+      while(aux != NULL)
+      {
+         push(pila,aux);
+         aux = next(adj);
+         cont ++;
+      }
+      pop(pila);
+      free(n);
+   }
+   */
+   return NULL;
+
 }
 
 
