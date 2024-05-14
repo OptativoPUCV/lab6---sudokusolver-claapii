@@ -64,7 +64,7 @@ int is_valid(Node* n)
                   return 0;
                }
 
-               //Revisar Sub Matriz
+               //Revisar Sub Matriz (Terminar)
                int fila = (i / 3) * 3;
                int col = (j % 3) * 3;
                for (int p = fila ; p < fila ; p++)
@@ -108,8 +108,16 @@ List* get_adj_nodes(Node* n)
 }
 
 
-int is_final(Node* n){
-    return 0;
+int is_final(Node* n)
+{
+   int i,j;
+   for(i = 0 ; i < 9 ; i++) //Filas
+      for (j = 0 ; j < 9 ; j++) //Columnas
+      {
+         if (n->sudo[i][j] == 0) //Si hay un espacio vacio
+            return 0;
+      }
+   return 1;
 }
 
 Node* DFS(Node* initial, int* cont){
