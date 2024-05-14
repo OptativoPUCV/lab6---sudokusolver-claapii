@@ -43,9 +43,22 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n){
-
-    return 1;
+int is_valid(Node* n)
+{
+   int i, j, k;
+   for (i = 0; i < 9; i++) //Filas
+      for(j = 0; j < 9; j++) //Columnas
+         if(n->sudo[i][j] != 0)
+         {
+            for (k = 0; k < 9; k++) //Revisa si el numero esta en la fila
+            {
+               if (k != j && n->sudo[i][j] == n->sudo[i][k]) 
+               {
+                  return 0;
+               }    
+            }
+         }
+   return 1;
 }
 
 
@@ -61,7 +74,7 @@ List* get_adj_nodes(Node* n)
             {
                Node* adj=copy(n);
                adj->sudo[i][j]=k;
-               pushBack(list,adj);
+               if (is_valid(adj)) pushBack(list,adj); //Confirmamos si el nodo es valido
             }      
          }
    
