@@ -55,7 +55,11 @@ int is_valid(Node* n)
                if (k != j && n->sudo[i][j] == n->sudo[i][k]) 
                {
                   return 0;
-               }    
+               } 
+               if (k != i && n->sudo[i][j] == n->sudo[k][j])
+               {
+                  return 0;
+               }
             }
          }
    return 1;
@@ -68,7 +72,7 @@ List* get_adj_nodes(Node* n)
    int i,j,k;
    for(i=0;i<9;i++) //Filas
       for(j=0;j<9;j++) //Columnas
-         if(n->sudo[i][j]==0)
+         if(n->sudo[i][j]==0) //Si no hay un número
          {
             for(k=1;k<=9;k++) //Numeros 1-9
             {
