@@ -64,13 +64,16 @@ int is_valid(Node* n)
                   return 0;
                }
 
-               int p;
-               for (p = 0 ; p < 9 ; p++)
+               //Revisar Sub Matriz
+               int fila = (i / 3) * 3;
+               int col = (j / 3) * 3;
+               for (int p = fila ; p < fila ; p++)
                {
-                  int l = 3 * (k/3) + (p/3);
-                  int m = 3 * (k/3) + (p%3);
-                  if (l != i && m != j && n->sudo[i][j] == n->sudo[l][m]) return 0;
-               
+                  for (int l = col; l < col; l++)
+                  {
+                     if (p != i && l != j && n->sudo[i][j] == n->sudo[p][l])
+                        return 0;
+                  }
                }
                
             }
