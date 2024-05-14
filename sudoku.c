@@ -78,9 +78,11 @@ List* get_adj_nodes(Node* n)
             for(k=1;k<=9;k++) //Numeros 1-9
             {
                if (is_valid(n)) 
-               {                 
-                  n->sudo[i][j] = k;
-                  pushBack(list,n); //Confirmamos si el nodo es valido
+               {
+                  Node* adj = copy(n);
+                  adj->sudo[i][j] = k;
+                  if (is_valid(adj)) 
+                     pushBack(list,adj); //Confirmamos si el nodo es valido
                }
             }      
          }
