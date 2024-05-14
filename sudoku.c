@@ -53,16 +53,15 @@ List* get_adj_nodes(Node* n)
 {
    List* list=createList();
    int i,j,k;
-   for(i=0;i<9;i++)
-      for(j=0;j<9;j++)
+   for(i=0;i<9;i++) //Filas
+      for(j=0;j<9;j++) //Columnas
          if(n->sudo[i][j]==0)
          {
-            for(k=1;k<=9;k++)
+            for(k=1;k<=9;k++) //Numeros 1-9
             {
                Node* adj=copy(n);
                adj->sudo[i][j]=k;
-               if(is_valid(adj))
-                  pushBack(list,adj);
+               if(is_valid(adj)) pushBack(list,adj);
             }      
          }
    
