@@ -3,11 +3,13 @@
 #include "list.h"
 
 
-typedef struct{
+typedef struct
+{
    int sudo[9][9];
 }Node;
 
-Node* createNode(){
+Node* createNode()
+{
   Node* n=(Node*) malloc(sizeof(Node));
   return n;
 }
@@ -61,7 +63,18 @@ int is_valid(Node* n)
                { //Revisa si el número está en la fila
                   return 0;
                }
+
+               int p;
+               for (p = 0 ; p < 9 ; p++)
+               {
+                  if (p != j && p != i)
+                  {
+                     if (n->sudo[i][j] == n->sudo[i][p] && n->sudo[i][j])
+                        return 0;
+                  }
+               }
             }
+            
          }
    return 1;
 }
