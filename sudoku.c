@@ -63,15 +63,16 @@ int is_valid(Node* n)
                { //Revisa si el número está en la fila
                   return 0;
                }
-
+            }
+            for (k = 0; k < 9; k++)
+            {
                int p;
                for (p = 0 ; p < 9 ; p++)
                {
-                  if (p != j && p != i)
-                  {
-                     if (n->sudo[i][j] == n->sudo[i][p] && n->sudo[i][j])
-                        return 0;
-                  }
+                  int m = 3 * (i/3) + (p/3);
+                  int l = 3 * (j/3) + (p%3);
+                  if (m != i && l != j && n->sudo[i][j] == n->sudo[m][j]) return 0;
+                  if (m != i && l != j && n->sudo[i][j] == n->sudo[i][l]) return 0;
                }
             }
             
