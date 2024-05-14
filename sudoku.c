@@ -48,11 +48,11 @@ int is_valid(Node* n)
    int i, j, k;
    for (i = 0; i < 9; i++) //Filas
       for(j = 0; j < 9; j++) //Columnas
-         if(n->sudo[i][j] != 0)
+         if(n->sudo[i][j] != 0) //Si hay un número
          {
             for (k = 0; k < 9; k++) //Revisa si el numero esta en la fila
             {
-               if (k != j && n->sudo[i][j] == n->sudo[i][k]) 
+               if (n->sudo[i][j] == n->sudo[i][k]) 
                {
                   return 0;
                }    
