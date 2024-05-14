@@ -12,7 +12,8 @@ Node* createNode(){
   return n;
 }
 
-Node* copy(Node* n){
+Node* copy(Node* n)
+{
     Node* new=(Node*) malloc(sizeof(Node));
     *new = *n;
     return new;
@@ -50,14 +51,14 @@ int is_valid(Node* n)
       for(j = 0; j < 9; j++) //Columnas
          if(n->sudo[i][j] != 0) //Si hay un número
          {
-            for (k = 0; k < 9; k++) //Revisa si el numero esta en la fila
+            for (k = 0; k < 9; k++) //Revisa si el numero esta en la fila o columna
             {
                if (k != j && n->sudo[i][j] == n->sudo[i][k]) 
-               {
+               { //Revisa si el numero esta en la columna
                   return 0;
                } 
                if (k != i && n->sudo[i][j] == n->sudo[k][j])
-               {
+               { //Revisa si el número está en la fila
                   return 0;
                }
             }
@@ -76,9 +77,10 @@ List* get_adj_nodes(Node* n)
          {
             for(k=1;k<=9;k++) //Numeros 1-9
             {
-               Node* adj=copy(n);
-               adj->sudo[i][j]=k;
-               if (is_valid(adj)) pushBack(list,adj); //Confirmamos si el nodo es valido
+               Node* adj = copy(n);
+               adj->sudo[i][j] = k;
+               if (is_valid(adj)) 
+                  pushBack(list,adj); //Confirmamos si el nodo es valido
             }      
          }
    
