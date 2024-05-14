@@ -66,7 +66,7 @@ int is_valid(Node* n)
 
                //Revisar Sub Matriz
                int fila = (i / 3) * 3;
-               int col = (j / 3) * 3;
+               int col = (j % 3) * 3;
                for (int p = fila ; p < fila ; p++)
                {
                   for (int l = col; l < col; l++)
