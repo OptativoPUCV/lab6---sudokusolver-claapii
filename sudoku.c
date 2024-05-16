@@ -63,20 +63,7 @@ int is_valid(Node* n)
                { //Revisa si el número está en la fila
                   return 0;
                }
-
-               //Revisar Sub Matriz (Terminar)
-               int fila = (i / 3) * 3;
-               int col = (j % 3) * 3;
-               for (int p = fila ; p < fila ; p++)
-               {
-                  for (int l = col; l < col; l++)
-                  {
-                     if (p != i && l != j && n->sudo[i][j] == n->sudo[p][l])
-                        return 0;
-                  }
-               }
             }
-         }
    return 1;
 }
 
