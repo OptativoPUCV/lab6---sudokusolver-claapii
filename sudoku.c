@@ -56,7 +56,7 @@ int is_valid(Node* n)
          if(n->sudo[i][j] == 0) continue;
          if(n->sudo[i][j] < 1 || n->sudo[i][j] > 9) return 0;
          if(arrayF[n->sudo[i][j]] != 0) return 0;
-         arrayF[n->sudo[i][j]]++;
+         arrayF[n->sudo[i][j]] = 1;
       }
    }
 
@@ -67,7 +67,7 @@ int is_valid(Node* n)
          if(n->sudo[j][i] == 0) continue;
          if(n->sudo[j][i] < 1 || n->sudo[j][i] > 9) return 0;
          if(arrayC[n->sudo[j][i]] != 0) return 0;
-         arrayC[n->sudo[j][i]]++;
+         arrayC[n->sudo[j][i]] = 1;
       }
    }
 
