@@ -49,35 +49,42 @@ void print_node(Node* n){
 int is_valid(Node* n)
 {
    int i, j, k;
-   for (i = 0; i < 9; i++) //Filas
-      for(j = 0; j < 9; j++) //Columnas
-         if(n->sudo[i][j] != 0) //Si hay un número
-         {
-            for (k = 0; k < 9; k++) //Revisa si el numero esta en la fila o columna
-            {
-               if (k != j && n->sudo[i][j] == n->sudo[i][k]) 
-               { //Revisa si el numero esta en la columna
-                  return 0;
-               } 
-               if (k != i && n->sudo[i][j] == n->sudo[k][j])
-               { //Revisa si el número está en la fila
-                  return 0;
-               }
-            }
-         }
-            for(k = 0 ; k < 9 ; k++)
-            {
-               int array[10] = {0};
-               for (int p = 0 ; p < 0 ; p++)
-               {
-                  i = 3*(k/3) + (p/3);
-                  j = 3*(k%3) + (p%3);
-                  if (n->sudo[i][j] == 0) continue;
-                  if (n->sudo[i][j] < 1 || n->sudo[i][j] > 9) return 0;
-                  if (array[n->sudo[i][j]] != 0) return 0;
-                  array[n->sudo[i][j]] = 1;
-               }
-            }
+   //Filas
+   for (i = 0; i < 9; i++){
+      int arrayF[10] = {0};
+      for(j = 0; j < 9; j++){
+         if(n->sudo[i][j] == 0) continue;
+         if(n->sudo[i][j] < 1 || n->sudo[i][j] > 9) return 0;
+         if(arrayF[n->sudo[i][j]] != 0) return 0;
+         arrayF[n->sudo[i][j]]++;
+      }
+   }
+
+   //Columnas
+   for (i = 0; i < 9; i++){
+      int arrayC[10] = {0};
+      for(j = 0; j < 9; j++){
+         if(n->sudo[j][i] == 0) continue;
+         if(n->sudo[j][i] < 1 || n->sudo[j][i] > 9) return 0;
+         if(arrayC[n->sudo[j][i]] != 0) return 0;
+         arrayC[n->sudo[j][i]]++;
+      }
+   }
+
+   //Revisar Matrices
+   for(k = 0 ; k < 9 ; k++)
+   {
+      int array[10] = {0};
+      for (int p = 0 ; p < 0 ; p++)
+      {
+         i = 3*(k/3) + (p/3);
+         j = 3*(k%3) + (p%3);
+         if (n->sudo[i][j] == 0) continue;
+         if (n->sudo[i][j] < 1 || n->sudo[i][j] > 9) return 0;
+         if (array[n->sudo[i][j]] != 0) return 0;
+         array[n->sudo[i][j]] = 1;
+      }
+   }
             
    return 1;
 }
