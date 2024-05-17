@@ -48,44 +48,40 @@ void print_node(Node* n){
 
 int is_valid(Node* n)
 {
-   int i, j, k;
    //Filas
-   for (i = 0; i < 9; i++){
-      int arrayF[10] = {0};
-      for(j = 0; j < 9; j++){
-         if(n->sudo[i][j] == 0) continue;
-         if(n->sudo[i][j] < 1 || n->sudo[i][j] > 9) return 0;
-         if(arrayF[n->sudo[i][j]] != 0) return 0;
-         arrayF[n->sudo[i][j]] = 1;
+   for (int i = 0 ; i < 9 ; i++){
+      int arrayFilas[10] = {0};
+      for (int j = 0 ; j < 9 ; j++){
+         if (n->sudo[i][j] == 0) continue;
+         if (n->sudo[i][j] < 1 || n->sudo[i][j] > 9) return 0;
+         if (arrayFilas[n->sudo[i][j]] != 0) return 0;
+         arrayFilas[n->sudo[i][j]] = 1;
       }
    }
 
    //Columnas
-   for (i = 0; i < 9; i++){
-      int arrayC[10] = {0};
-      for(j = 0; j < 9; j++){
-         if(n->sudo[j][i] == 0) continue;
-         if(n->sudo[j][i] < 1 || n->sudo[j][i] > 9) return 0;
-         if(arrayC[n->sudo[j][i]] != 0) return 0;
-         arrayC[n->sudo[j][i]] = 1;
+   for (int i = 0 ; i < 9 ; i++){
+      int arrayColumnas[10] = {0};
+      for (int j = 0 ; j < 9 ; j++){
+         if (n->sudo[j][i] == 0) continue;
+         if (n->sudo[j][i] < 1 || n->sudo[j][i] > 9) return 0;
+         if (arrayColumnas[n->sudo[j][i]] != 0) return 0;
+         arrayColumnas[n->sudo[j][i]] = 1;
       }
    }
 
-   //Revisar Matrices
-   for(k = 0 ; k < 9 ; k++)
-   {
-      int array[10] = {0};
-      for (int p = 0 ; p < 0 ; p++)
-      {
-         i = 3*(k/3) + (p/3);
-         j = 3*(k%3) + (p%3);
+   //Submatrices
+   for (int k = 0 ; k < 9 ; k++){
+      int arraySubmatrices[10] = {0};
+      for (int p = 0 ; p < 9 ; p++){
+         int i = 3*(k/3) + (p/3);
+         int j = 3*(k%3) + (p%3);
          if (n->sudo[i][j] == 0) continue;
          if (n->sudo[i][j] < 1 || n->sudo[i][j] > 9) return 0;
-         if (array[n->sudo[i][j]] != 0) return 0;
-         array[n->sudo[i][j]] = 1;
+         if (arraySubmatrices[n->sudo[i][j]] != 0) return 0;
+         arraySubmatrices[n->sudo[i][j]] = 1;
       }
    }
-            
    return 1;
 }
 
@@ -127,7 +123,24 @@ int is_final(Node* n)
 
 Node* DFS(Node* initial, int* cont)
 {
-   
+   Stack *pila = createStack();
+   cont = 0;
+   push(pila, initial);
+   while (!is_empty(pila))
+   {
+      Node* n = (Node *)top(pila);
+      pop(pila);
+      if (is_final(n)) return n;
+      List* adj = get_adj_nodes(n);
+      Node* aux = first(adj);
+      while (aux != NULL)
+      {
+         push(pila, aux);
+         aux = next(adj);
+         if (is_final(aux)) cont++;
+      }
+      free(n);
+   }
 
    return NULL;
 }
