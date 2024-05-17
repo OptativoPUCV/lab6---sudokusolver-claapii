@@ -48,40 +48,44 @@ void print_node(Node* n){
 
 int is_valid(Node* n)
 {
+   int i, j;
    //Filas
-   for (int i = 0 ; i < 9 ; i++){
-      int arrayFilas[10] = {0};
-      for (int j = 0 ; j < 9 ; j++){
-         if (n->sudo[i][j] == 0) continue;
-         if (n->sudo[i][j] < 1 || n->sudo[i][j] > 9) return 0;
-         if (arrayFilas[n->sudo[i][j]] != 0) return 0;
-         arrayFilas[n->sudo[i][j]] = 1;
+   for (i = 0; i < 9; i++){
+      int arrayF[10] = {0};
+      for(j = 0; j < 9; j++){
+         if(n->sudo[i][j] == 0) continue;
+         if(n->sudo[i][j] < 1 || n->sudo[i][j] > 9) return 0;
+         if(arrayF[n->sudo[i][j]] != 0) return 0;
+         arrayF[n->sudo[i][j]] = 1;
       }
    }
 
    //Columnas
-   for (int i = 0 ; i < 9 ; i++){
-      int arrayColumnas[10] = {0};
-      for (int j = 0 ; j < 9 ; j++){
-         if (n->sudo[j][i] == 0) continue;
-         if (n->sudo[j][i] < 1 || n->sudo[j][i] > 9) return 0;
-         if (arrayColumnas[n->sudo[j][i]] != 0) return 0;
-         arrayColumnas[n->sudo[j][i]] = 1;
+   for (i = 0; i < 9; i++){
+      int arrayC[10] = {0};
+      for(j = 0; j < 9; j++){
+         if(n->sudo[j][i] == 0) continue;
+         if(n->sudo[j][i] < 1 || n->sudo[j][i] > 9) return 0;
+         if(arrayC[n->sudo[j][i]] != 0) return 0;
+         arrayC[n->sudo[j][i]] = 1;
       }
    }
 
-   //Submatrices
-   for (int k = 0 ; k < 9 ; k++){
-      int arraySubmatrices[10] = {0};
-      for (int p = 0 ; p < 9 ; p++){
-         int i = 3*(k/3) + (p/3);
-         int j = 3*(k%3) + (p%3);
+   //Revisar Matrices
+   for(int k = 0 ; k < 9 ; k++)
+   {
+      int arrayS[10] = {0};
+      for (int p = 0 ; p < 9 ; p++)
+      {
+         i = 3*(k/3) + (p/3);
+         j = 3*(k%3) + (p%3);
          if (n->sudo[i][j] == 0) continue;
          if (n->sudo[i][j] < 1 || n->sudo[i][j] > 9) return 0;
-         if (arraySubmatrices[n->sudo[i][j]] != 0) return 0;
-         arraySubmatrices[n->sudo[i][j]] = 1;
+         if (arrayS[n->sudo[i][j]] != 0) return 0;
+         arrayS[n->sudo[i][j]] = 1;
       }
    }
+            
    return 1;
 }
 
